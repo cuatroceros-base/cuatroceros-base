@@ -1,0 +1,11 @@
+
+h2 Login
+form(action='/auth/login', method='POST')
+  div
+    label(for='username') Username:
+    input(type='text', name='username')
+  div
+    label(for='password') Password:
+    input(type='password', name='password')  
+  br
+  input#button(type='submit' value='Submit')

@@ -1,6 +1,16 @@
-const router = require('express').Router()
-const AuthController = require('../controllers/AuthController')
+const router = require('express').Router();
+const AuthController = require('../controllers/AuthController');
+const passport = require('passport');
+const flash = require("connect-flash");
 
-router.get('/', AuthController.Auth)
+router.get('/signup', AuthController.authSignup);
 
-module.exports = router
+router.post('/signup', AuthController.signup);
+
+router.get("/login", AuthController.authLogin);
+
+router.post("/login", AuthController.login);
+
+router.get("/logout", AuthController.logout);
+
+module.exports = router;
