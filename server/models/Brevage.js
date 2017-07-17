@@ -8,7 +8,7 @@ const brevageSchema = new Schema({
     type: String,
     enum: ['shot', 'regular']
   },
-  location: {type: Schema.Types.ObjectId, ref: 'Location', required: true}
+  location: {type: Schema.Types.ObjectId, ref: 'Location'}
 })
 
 module.exports = mongoose.model('Brevage', brevageSchema)
