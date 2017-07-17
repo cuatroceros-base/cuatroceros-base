@@ -1,6 +1,8 @@
 const Brevage = require('../models/Brevage')
-
 const mongoose = require('mongoose')
+const config = require('./config')
+
+mongoose.connect(config.db)
 
 mongoose.connect('mongodb://localhost/cuatroceros')
   .then(() => {
