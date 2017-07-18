@@ -67,5 +67,12 @@ module.exports = {
   logout: (req, res) => {
     req.logout();
     res.redirect("/auth/login");
-  }
+  },
+  authFacebook: passport.authenticate("facebook"),
+
+  facebook: passport.authenticate("facebook", {
+  successRedirect: "/order/596dd21ecf5ef1331ffee205",
+  failureRedirect: "/"
+})
+
 };
