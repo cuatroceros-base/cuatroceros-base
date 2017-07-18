@@ -16,7 +16,8 @@ const userSchema = new Schema({
     ]
   },
   accessToken: String,
-  facebookID: String
+  facebookID: String,
+  location: {type: Schema.Types.ObjectId, ref: 'Location'}
 }, {
   timestamps: {
     createdAt: 'created_at',
