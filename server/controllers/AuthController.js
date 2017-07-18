@@ -15,10 +15,10 @@ module.exports = {
     res.render('auth/signup');
   },
   signup: (req, res, next) => {
-    const name = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
 
-    if (username === "" || password === "") {
+    if (email === "" || password === "") {
       res.render("auth/signup", {
         message: "Indicate username and password"
       });
@@ -26,8 +26,8 @@ module.exports = {
     }
 
     User.findOne({
-      username
-    }, "username", (err, user) => {
+      email
+    }, "email", (err, user) => {
       if (user !== null) {
         res.render("auth/signup", {
           message: "The username already exists"
@@ -39,17 +39,17 @@ module.exports = {
       const hashPass = bcrypt.hashSync(password, salt);
 
       const newUser = User({
-        name: name,
+        email: email,
         password: hashPass
       });
 
       newUser.save((err) => {
         if (err) {
-          res.render("auth/signup", {
+          res.render("/auth/signup", {
             message: "Something went wrong"
           });
         } else {
-          res.redirect("/");
+          res.redirect("/auth/login");
         }
       });
     });
@@ -60,10 +60,9 @@ module.exports = {
     });
   },
   login: passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/order/596dd21ecf5ef1331ffee205",
     failureRedirect: "/auth/login",
-    passReqToCallback: true,
-    failureFlash: true
+    passReqToCallback: true
   }),
   logout: (req, res) => {
     req.logout();

@@ -3,9 +3,9 @@ var User = require('../models/User')
 const bcrypt = require('bcrypt')
 
 module.exports = function (passport) {
-  passport.use(new LocalStrategy((username, password, next) => {
+  passport.use(new LocalStrategy((email, password, next) => {
     User.findOne({
-      username
+      email
     }, (err, user) => {
       if (err) {
         return next(err)
@@ -13,7 +13,7 @@ module.exports = function (passport) {
 
       if (!user) {
         return next(null, false, {
-          message: 'Incorrect username'
+          message: 'Incorrect email'
         })
       }
 
