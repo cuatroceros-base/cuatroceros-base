@@ -17,6 +17,6 @@ router.get("/logout", AuthController.logout);
 
 router.get("/facebook", AuthController.authFacebook);
 
-router.get("/facebook/callback", AuthController.facebook);
+router.get("/facebook", AuthController.facebook);
 
 module.exports = router;

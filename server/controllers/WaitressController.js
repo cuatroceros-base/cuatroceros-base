@@ -1,7 +1,14 @@
+const Order = require('../models/Order')
 
 module.exports = {
   order: (req, res, next) => {
-    console.log("hola");
-    res.render('waitress/index');
+    console.log(req.user.location)
+    Order.find({location: req.user.location}).populate('brevages').exec()
+          .then((orders) => {
+            console.log(orders)
+            res.render('waitress/index', {orders})
+          })
+
+
   }
-};
+}

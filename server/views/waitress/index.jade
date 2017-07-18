@@ -1,9 +1,13 @@
-doctype html
-html(lang='en')
-  head
-    title waitress
-  body
-    h1 orders
-    #orders.orders
-      p Primer pedido: 
-      p Segundo pedido: 
+h1 orders
+#orders.orders
+ul
+  each order, i in orders
+    li(id = '#{order._id}')
+      span #{order._id}
+      ul
+        each brevage, i in order.brevages
+          li(id = '#{brevage._id}')
+            span #{brevage.name}
+      span #{order.status}
+      button pending
+      button ready
