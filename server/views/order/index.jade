@@ -1,0 +1,9 @@
+form(action='/order' method='POSTl')
+  ul
+    each brevage, i in brevages
+      li(id = '#{brevage.id}')
+        span #{brevage.name}
+        button(onclick) +
+        button(onclick) -
+        input(name = '#{brevage.id}' value = 0)
+  button(type = 'submit') order

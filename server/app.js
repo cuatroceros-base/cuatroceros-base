@@ -8,5 +8,8 @@ require('./config/express')(app)
 const index = require('./routes/index')
 app.use('/', index)
 
+const order = require('./routes/order')
+app.use('/order', order)
+
 require('./config/error-handler')(app)
 module.exports = app
