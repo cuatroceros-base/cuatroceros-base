@@ -18,5 +18,8 @@ app.use('/home', home)
 const order = require('./routes/order')
 app.use('/order', order)
 
+const waitress = require('./routes/waitress')
+app.use('/waitress', waitress)
+
 require('./config/error-handler')(app)
 module.exports = app

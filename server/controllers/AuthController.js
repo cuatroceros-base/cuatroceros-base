@@ -71,8 +71,8 @@ module.exports = {
   authFacebook: passport.authenticate("facebook"),
 
   facebook: passport.authenticate("facebook", {
-  successRedirect: "/order/596cdc35e5514950b140cf6b",
-  failureRedirect: "/"
+  successRedirect: "/",
+  failureRedirect: "/auth/login"
 })
 
 };

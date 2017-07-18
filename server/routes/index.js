@@ -4,7 +4,7 @@ const ensureLogin = require('connect-ensure-login')
 
 function roleRedirect (req, res, next) {
   if (req.user.role === 'waitress') {
-    res.redirect('/home')
+    res.redirect('/waitress')
   } else if (req.user.role === 'client') {
     next()
   }
