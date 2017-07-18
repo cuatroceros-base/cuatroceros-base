@@ -15,7 +15,8 @@ const userSchema = new Schema({
       'waitress'
     ]
   },
-  accessToken: String
+  accessToken: String,
+  facebookID: String
 }, {
   timestamps: {
     createdAt: 'created_at',

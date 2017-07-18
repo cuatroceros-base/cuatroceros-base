@@ -60,12 +60,19 @@ module.exports = {
     });
   },
   login: passport.authenticate("local", {
-    successRedirect: "/order/596dd21ecf5ef1331ffee205",
+    successRedirect: "/order/596cdc35e5514950b140cf6b",
     failureRedirect: "/auth/login",
     passReqToCallback: true
   }),
   logout: (req, res) => {
     req.logout();
     res.redirect("/auth/login");
-  }
+  },
+  authFacebook: passport.authenticate("facebook"),
+
+  facebook: passport.authenticate("facebook", {
+  successRedirect: "/order/596cdc35e5514950b140cf6b",
+  failureRedirect: "/"
+})
+
 };

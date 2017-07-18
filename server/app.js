@@ -4,6 +4,8 @@ const passport = require('passport')
 require('dotenv').load()
 require('./config/passport')(passport)
 require('./config/express')(app)
+require('./config/facebook');
+
 
 const index = require('./routes/index')
 app.use('/', index)
