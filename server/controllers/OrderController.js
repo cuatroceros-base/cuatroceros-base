@@ -1,6 +1,6 @@
 const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
-const {generateOrder, computeTotal} = require('../helpers/OrderHelper')
+const {generateBrevageList, computeTotal} = require('../helpers/OrderHelper')
 
 module.exports = {
   index: (req, res, next) => {
@@ -16,11 +16,11 @@ module.exports = {
 
     computeTotal(brevageObjects).then((totalPrice) => {
       const order = new Order({
-        brevages: generateOrder(brevageObjects),
+        brevages: generateBrevageList(brevageObjects),
         totalPrice: totalPrice,
         status: 'onqueue'
       })
-      order.save().then(e => console.log('order created'))
+      order.save().then(e => res.redirect('order/proceed'))
     })
   }
 }

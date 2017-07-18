@@ -6,6 +6,9 @@ form(action='/auth/login', method='POST')
     input(type='text', name='username')
   div
     label(for='password') Password:
-    input(type='password', name='password')  
+    input(type='password', name='password')
   br
   input#button(type='submit' value='Submit')
+
+  a(href="/auth/facebook") Login With Facebook
+  a(href="/auth/signup") Signup

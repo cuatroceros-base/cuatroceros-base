@@ -60,7 +60,7 @@ module.exports = {
     });
   },
   login: passport.authenticate("local", {
-    successRedirect: "/order/596cdc35e5514950b140cf6b",
+    successRedirect: "/",
     failureRedirect: "/auth/login",
     passReqToCallback: true
   }),

@@ -1,6 +1,15 @@
-const router = require('express').Router();
-const IndexController = require('../controllers/IndexController');
+const router = require('express').Router()
+const IndexController = require('../controllers/IndexController')
+const ensureLogin = require('connect-ensure-login')
 
-router.get('/', IndexController.index);
+function roleRedirect (req, res, next) {
+  if (req.user.role === 'waitress') {
+    res.redirect('/home')
+  } else if (req.user.role === 'client') {
+    next()
+  }
+}
 
-module.exports = router;
+router.get('/', ensureLogin.ensureLoggedIn('/auth/login'), roleRedirect, IndexController.index)
+
+module.exports = router

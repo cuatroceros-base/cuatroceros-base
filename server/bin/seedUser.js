@@ -14,22 +14,22 @@ mongoose.connect('mongodb://localhost/cuatroceros')
   .then(() => {
 
     const UserData = [{
-      name: "Jorge",
-      lastName: "Pedrejon",
-      email: "jorgepedrejon@gmail.com",
-      password: bcrypt.hashSync("1234", salt),
-      dateOfBirth: "01/01/1990",
-      address: "Paseo de la Habana 22",
-      role: "client"
+        name: "Jorge",
+        lastName: "Pedrejon",
+        email: "jorgepedrejon@gmail.com",
+        password: bcrypt.hashSync("1234", salt),
+        dateOfBirth: "01/01/1990",
+        address: "Paseo de la Habana 22",
+        role: "client"
       },
       {
-      name: "Mikel",
-      lastName: "Ruma",
-      email: "mikelruma@gmail.com",
-      password: bcrypt.hashSync("4321", salt),
-      dateOfBirth: "06/06/2000",
-      address: "Castellana 22",
-      role: "waitress"
+        name: "Mikel",
+        lastName: "Ruma",
+        email: "mikelruma@gmail.com",
+        password: bcrypt.hashSync("4321", salt),
+        dateOfBirth: "06/06/2000",
+        address: "Castellana 22",
+        role: "waitress"
     }];
 
 

@@ -2,7 +2,7 @@ const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
 
 module.exports = {
-  generateOrder: (brevageObjects) => {
+  generateBrevageList: (brevageObjects) => {
     let brevages = []
 
     brevageObjects.map((brevage) => {
