@@ -1,5 +1,6 @@
 const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
+const {generateOrder, computeTotal} = require('../helpers/OrderHelper')
 
 module.exports = {
   index: (req, res, next) => {
@@ -8,30 +9,18 @@ module.exports = {
       res.render('order/index', {brevages})
     })
   },
-  order: (req, res, next) => {
-    let brevages = []
-    Object.keys(req.body).map((brevageId) => {
-      if (req.body[brevageId] != 0) {
-        brevages = [...brevages, ...Array(parseInt(req.body[brevageId])).fill(brevageId)]
-      }
+  generateOrder: (req, res, next) => {
+    let brevageObjects = Object.keys(req.body).map(brevageId => {
+      return {id: brevageId, quantity: parseInt(req.body[brevageId])}
     })
 
-    const order = new Order({
-      brevages
-    })
-
-    order.save().then(e => console.log('order created'))
-  },
-  total: (req, res, next) => {
-    let total = 0
-    Object.keys(req.body).map((brevageId) => {
-      Brevage.find({_id: req.params.locationId}).exec()
-      .then((brevage) => {
-        if (req.body[brevageId] != 0) {
-          total =+ parseInt(req.body[brevageId]) * brevage.price
-        }
+    computeTotal(brevageObjects).then((totalPrice) => {
+      const order = new Order({
+        brevages: generateOrder(brevageObjects),
+        totalPrice: totalPrice,
+        status: 'onqueue'
       })
+      order.save().then(e => console.log('order created'))
     })
-    console.log(total)
   }
 }

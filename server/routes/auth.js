@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const AuthController = require('../controllers/AuthController');
 const passport = require('passport');
-const flash = require("connect-flash");
+//const flash = require("connect-flash");
 
 router.get('/signup', AuthController.authSignup);
 

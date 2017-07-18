@@ -2,7 +2,7 @@
 const express = require("express");
 const authRoutes = express.Router();
 const passport = require('passport');
-const flash = require("connect-flash");
+// const flash = require("connect-flash");
 // User model
 const User = require("../models/User");
 // Bcrypt to encrypt passwords

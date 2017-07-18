@@ -5,10 +5,11 @@ const Schema = mongoose.Schema
 const orderSchema = new Schema({
   brevages: [{type: Schema.Types.ObjectId, ref: 'Brevage', required: true}],
   waiterId: {type: Schema.Types.ObjectId, ref: 'User'},
+  totalPrice: Number,
   status: {
     type: String,
     enum: [
-      'onqueu',
+      'onqueue',
       'ready',
       'served'
     ]
