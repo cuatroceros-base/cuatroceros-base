@@ -1,14 +1,49 @@
+link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', rel='stylesheet')
+link(href='http://allfont.es/allfont.css?fonts=digital-7', rel='stylesheet', type='text/css')
+link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+link(href='/stylesheets/style.css', type='text/css', rel='stylesheet')
+script(src='../../public/javascript/javascript.js', type = 'text/javascript')
+style.
+  h1.text-center {
+  font-family: 'Digital-7', arial;
+  font-size: 100px;
+  text-shadow: 4px 4px 4px #aaa;
+  }
+  h2.text-center {
+  font-family: 'Digital-7';
+  font-size: 40px;
+  text-shadow: 4px 4px 4px #aaa;
+  }
+.container-fluid
+  .row
+    .col-lg-12
+    .col-lg-12
+      //- h4 Click "Create new account?"
+      .flip
+        .card
+          .face.front
+            .panel.panel-default
+                form(action='/auth/login', method='POST')
+                  br
+                  h1.text-center 00:00 
+                  h2.text-center cuatroceros
+                  br
+                  input.form-control#email(type='text', name='username', placeholder='Email Address', style="font-size:20px")
+                  input.form-control#password(type='password', name='password', placeholder='Password', style="font-size:20px")
+                  p.text-right(style="font-size:20px")
+                    a(href='') Forgot Password
+                  button.btn.btn-primary.btn-block(type="submit", style="font-size:30px") LOG IN
+                  hr
+                  p.blue(style="font-size:20px") Sign in with
+                  p
+                    a(href='/auth/facebook')
+                      i.fa.fa-facebook-f.fa-lg
+                  hr
+                  p.text-center
+                    a.fliper-btn
+                      a(href='/auth/signup',style="font-size:30px") Create new account?
 
-h2 Login
-form(action='/auth/login', method='POST')
-  div
-    label(for='username') Username:
-    input(type='text', name='username')
-  div
-    label(for='password') Password:
-    input(type='password', name='password')
-  br
-  input#button(type='submit' value='Submit')
-
-  a(href="/auth/facebook") Login With Facebook
-  a(href="/auth/signup") Signup
+    .col-lg-12
+// /.container
