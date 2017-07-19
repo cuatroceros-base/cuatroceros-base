@@ -1,6 +1,8 @@
 extends ../layout.jade
 
 block content
+  script(src='/js-static/notifications.js')
+  script(src='/js-static/order.js')
   .row-fluid
     .box.black.span12.noMargin(ontablet='span12', ondesktop='span12' style='margin-bottom:0px !important')
       .box-header
@@ -15,12 +17,14 @@ block content
             i.halflings-icon.white.remove
       .box-content
         form(action='/order' method='POST' style='margin-bottom:0px')
+          input(type='hidden' name='location' value=brevages[0].location)
           ul.tickets.metro
             li.ticket.red
               span.header
                 span.title(style='font-size: 20px;margin-top: 6px;') Total price
-                span.number(style='font-size: 15px;margin-top: 5px; margin-left:5px;border: 1px solid;padding: 1px;border-radius: 5px;') buy
-                span.number(style='font-size: 25px;margin-top: 5px;margin-right:5px;') 18€
+                input.number(type='submit' style='font-size: 15px;margin-top: 5px; margin-left:5px;border: 1px solid;padding: 1px;border-radius: 5px;background: none; color: white;' value='buy')
+                span.number(style='font-size: 25px;margin-top: 5px;margin-right:5px;') €
+                span.number(id='total' name='total' style='font-size: 25px;margin-top: 5px;margin-right:5px;') 0
             each brevage, i in brevages
               li(class=(i % 2 === 0 ? 'ticket blue' : 'ticket yellow'))
                 a(href='#')
@@ -32,7 +36,9 @@ block content
                     span.avatar
                       img(src='data:image/png;base64,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', alt='Avatar')
                     span.name(style='margin-top:5px')
-                      i.fa.fa-2x.fa-plus-circle(style='margin-right: 10px;')
-                      i.fa.fa-2x.fa-minus-circle
-                    span.priority(style='font-weight: bold; margin-right: 10px;') x 2
+                      i.fa.fa-2x.fa-plus-circle(style='margin-right: 10px;' onclick='addDrink("#{brevage._id}", #{brevage.price})')
+                      i.fa.fa-2x.fa-minus-circle(onclick='removeDrink("#{brevage._id}", #{brevage.price})')
+                    span.priority(id=brevage._id style='font-weight: bold; margin-right: 10px;') 0
+                    span.priority(style='font-weight: bold; margin-right: 5px;') x
                     span.priority(style='margin-right: 5px; font-weight: bold') #{brevage.price} €
+                    input(type='hidden' id="hidden_#{brevage._id}" name=brevage._id style='margin-right: 5px; font-weight: bold' value = 0)

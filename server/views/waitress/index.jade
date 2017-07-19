@@ -1,13 +1,73 @@
-h1 orders
-#orders.orders
-ul
-  each order, i in orders
-    li(id = '#{order._id}')
-      span #{order._id}
-      ul
-        each brevage, i in order.brevages
-          li(id = '#{brevage._id}')
-            span #{brevage.name}
-      span #{order.status}
-      button pending
-      button ready
+extends ../layoutWaitress.jade
+
+block content
+  .row-fluid
+    .box.black.span12(ontablet='span12', ondesktop='span12')
+      .box-header
+        h2
+          i.halflings-icon.white.list
+          span.break
+          | Weekly Stat
+        .box-icon
+          a.btn-minimize(href='#')
+            i.halflings-icon.white.chevron-up
+          a.btn-close(href='#')
+            i.halflings-icon.white.remove
+      .box-content
+        ul.dashboard-list.metro
+          li
+            a.dropmenu(href='#')
+              i.icon-arrow-down.red
+              strong 15
+              | New Registrations
+              span(style="float:right") assign
+              span(style="float:right") status
+            ul(style='display: none;')
+              li
+                a.submenu(href='submenu.html')
+                  i.icon-file-alt
+                  span.hidden-tablet  Sub Menu 1
+              li
+                a.submenu(href='submenu2.html')
+                  i.icon-file-alt
+                  span.hidden-tablet  Sub Menu 2
+              li
+                a.submenu(href='submenu3.html')
+                  i.icon-file-alt
+                  span.hidden-tablet  Sub Menu 3
+
+          li
+            a(href='#')
+              i.icon-arrow-down.red
+              strong 15
+              | 							  New Registrations
+          li
+            a(href='#')
+              i.icon-minus.blue
+              strong 36
+              | 							  New Articles
+          li
+            a(href='#')
+              i.icon-comment.yellow
+              strong 45
+              | 							  User reviews
+          li
+            a(href='#')
+              i.icon-arrow-up.green
+              strong 112
+              | 							  New Comments
+          li
+            a(href='#')
+              i.icon-arrow-down.red
+              strong 31
+              | 							  New Registrations
+          li
+            a(href='#')
+              i.icon-minus.blue
+              strong 93
+              | 							  New Articles
+          li
+            a(href='#')
+              i.icon-comment.yellow
+              strong 256
+              | 							  User reviews

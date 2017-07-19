@@ -21,5 +21,8 @@ app.use('/order', order)
 const waitress = require('./routes/waitress')
 app.use('/waitress', waitress)
 
+const notification = require('./routes/notification')
+app.use('/waitress', notification)
+
 require('./config/error-handler')(app)
 module.exports = app

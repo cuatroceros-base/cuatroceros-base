@@ -9,10 +9,12 @@ module.exports = {
       res.render('order/index', {brevages})
     })
   },
+
   generateOrder: (req, res, next) => {
     let brevageObjects = Object.keys(req.body).map(brevageId => {
       return {id: brevageId, quantity: parseInt(req.body[brevageId])}
     }).filter((element) => element.id !== 'location')
+    console.log(req.user._id)
     console.log(brevageObjects)
 
     computeTotal(brevageObjects).then((totalPrice) => {
@@ -20,6 +22,7 @@ module.exports = {
         brevages: generateBrevageList(brevageObjects),
         totalPrice: totalPrice,
         location: req.body.location,
+        clientId: req.user._id,
         status: 'onqueue'
       })
       order.save().then(e => res.redirect('order/proceed'))
