@@ -1,10 +1,46 @@
-
-h2 Signup
-form#form-container(action='/auth/signup', method='POST')
-  label(for='name') Username
-  input#username(type='text', name='email', placeholder='JonSnow')
-  br
-  label(for='password') Password
-  input#password(type='password', name='password', placeholder='Your password')
-  br
-  input#button(type='submit' value='Submit')
+link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', rel='stylesheet')
+link(href='http://allfont.es/allfont.css?fonts=digital-7', rel='stylesheet', type='text/css')
+link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+link(href='/stylesheets/style.css', type='text/css', rel='stylesheet')
+script(src='../../public/javascript/javascript.js', type = 'text/javascript')
+style.
+  h1.text-center {
+  font-family: 'Digital-7', arial;
+  font-size: 100px;
+  text-shadow: 4px 4px 4px #aaa;
+  }
+  h2.text-center {
+  font-family: 'Digital-7';
+  font-size: 40px;
+  text-shadow: 4px 4px 4px #aaa;
+  }
+          
+.container-fluid
+  .row
+    .col-lg-12
+    .col-lg-12
+      .flip
+        .card
+          .face.front
+            .panel.panel-default
+              form#form-container(action='/auth/signup', method='POST')
+                br
+                h1.text-center 00:00 
+                h2.text-center cuatroceros
+                br
+                label(style="font-size:30px") Basic Information
+                input.form-control#name(type='text', name='name', placeholder='Name', style="font-size:20px")
+                input.form-control#lastName(type='text', name='lastName', placeholder='Last Name', style="font-size:20px")
+                input.form-control#email(type='text', name='email', placeholder='Email Address',style="font-size:20px")
+                input.form-control#dateOfBirth(type='date', name='dateOfBirth', placeholder='Date of Birth', style="font-size:20px")
+                input.form-control#address(type='text', name='address', placeholder='City of residence', style="font-size:20px")
+                label(style="font-size:30px") Private Information
+                input.form-control#password(type='number', name='password', placeholder='Password', style="font-size:20px")
+                input.form-control#mobileNumber(type='number', name='mobileNumber', placeholder='Mobile Number', style="font-size:20px")
+                button.btn.btn-primary.btn-block(style="font-size:30px") SIGN UP
+                p.text-center
+                  a.fliper-btn(href='/auth/login',style="font-size:30px") Already have an account?
+  .col-lg-12
+          // /.container
