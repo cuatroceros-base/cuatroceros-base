@@ -1,8 +1,0 @@
-form(action='/order' method='POST')
-  ul
-    each brevage, i in brevages
-      li(id = '#{brevage.id}')
-        span #{brevage.name}
-
-        input(name = '#{brevage.id}' value = 0)
-  button(type = 'submit') order
