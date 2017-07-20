@@ -12,13 +12,21 @@ const notificationObject = {}
 
 module.exports = {
   registerClient: (req, res, next) => {
-    const notification = new Notification({
+    const newNotification = {
       userId: req.params.userId,
       endpoint: req.body.endpoint,
       key: req.body.key,
       authSecret: req.body.authSecret
-    })
-    notification.save().then(e => res.send('ok'))
+    }
+
+    Notification.findOne({userId: req.params.userId}).exec()
+       .then(notification => {
+         if(!notification) return new Notification(newNotification).save();
+         return Notification.findByIdAndUpdate(notification._id, newNotification,{new:true}).exec();
+       })
+       .then( user => next(null, user))
+       .catch(e => next(e));
+    // notification.fin().then(e => res.send('ok'))
   },
   registerWaitress: (req, res, next) => {
     notificationObject.endpoint = req.body.endpoint
