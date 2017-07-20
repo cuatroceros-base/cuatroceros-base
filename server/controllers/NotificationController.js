@@ -6,12 +6,9 @@ const notificationObject = {}
 
 module.exports = {
   register: (req, res, next) => {
-
-    console.log('registering')
     notificationObject.endpoint = req.body.endpoint
     notificationObject.key = req.body.key
     notificationObject.authSecret = req.body.authSecret
-    console.log(notificationObject)
 
     res.send('ok')
   },
@@ -23,7 +20,7 @@ module.exports = {
         p256dh: notificationObject.key,
         auth: notificationObject.authSecret
       }
-    }, 'the order is being processed')
+    }, `the order ${req.params.orderId} has changed the status to ${req.params.status}`)
     .then(function () {
       res.sendStatus(201)
     })

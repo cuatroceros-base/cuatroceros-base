@@ -1,9 +1,6 @@
-const SSE = require("sse-node")
-
 const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
 const {generateBrevageList, computeTotal} = require('../helpers/OrderHelper')
-
 
 module.exports = {
   index: (req, res, next) => {
@@ -32,9 +29,10 @@ module.exports = {
     })
   },
   assignOrder: (req, res, next) => {
+    console.log(req.query)
     Order.findOneAndUpdate({_id: req.params.orderId}, {$set: {status: req.query.state, waiterId: req.query.id}}).exec()
     .then((order) => {
-      res.redirect(`/notification/statusChanged/${req.query.state}`)
+      res.redirect(`/notification/statusChanged/${req.query.state}/${req.params.orderId}`)
     })
   }
 }

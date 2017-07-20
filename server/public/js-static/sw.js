@@ -10,6 +10,7 @@ self.addEventListener('push', function(event) {
     // Show a notification with title 'ServiceWorker Cookbook' and use the payload
     // as the body.
     self.registration.showNotification('Order Status', {
+      icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD5w2QRJctwPbx5_7byLjIifvWg8UP-s2DiLaGQ-y5xyMHiZMniiXnQtk',
       body: payload,
     })
   );
