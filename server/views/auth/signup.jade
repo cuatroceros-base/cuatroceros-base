@@ -16,7 +16,7 @@ style.
   font-size: 40px;
   text-shadow: 4px 4px 4px #aaa;
   }
-          
+
 .container-fluid
   .row
     .col-lg-12
@@ -27,7 +27,7 @@ style.
             .panel.panel-default
               form#form-container(action='/auth/signup', method='POST')
                 br
-                h1.text-center 00:00 
+                h1.text-center 00:00
                 h2.text-center cuatroceros
                 br
                 label(style="font-size:30px") Basic Information
@@ -37,7 +37,7 @@ style.
                 input.form-control#dateOfBirth(type='date', name='dateOfBirth', placeholder='Date of Birth', style="font-size:20px")
                 input.form-control#address(type='text', name='address', placeholder='City of residence', style="font-size:20px")
                 label(style="font-size:30px") Private Information
-                input.form-control#password(type='number', name='password', placeholder='Password', style="font-size:20px")
+                input.form-control#password(type='password', name='password', placeholder='Password', style="font-size:20px")
                 input.form-control#mobileNumber(type='number', name='mobileNumber', placeholder='Mobile Number', style="font-size:20px")
                 button.btn.btn-primary.btn-block(style="font-size:30px") SIGN UP
                 p.text-center

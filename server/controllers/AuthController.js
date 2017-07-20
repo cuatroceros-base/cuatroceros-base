@@ -40,10 +40,11 @@ module.exports = {
 
       const newUser = User({
         email: email,
-        password: hashPass
+        password: hashPass,
+        role: 'client'
       });
 
-      newUser.save((err) => {
+      newUser.save((err, obj) => {
         if (err) {
           res.render("/auth/signup", {
             message: "Something went wrong"
