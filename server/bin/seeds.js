@@ -1,3 +1,5 @@
+require('dotenv').config({path: '../.env'})
+
 const Location = require('../models/Location')
 const Brevage = require('../models/Brevage')
 const User = require('../models/User')
@@ -8,11 +10,8 @@ const bcryptSalt = 10
 const salt = bcrypt.genSaltSync(bcryptSalt)
 
 const mongoose = require('mongoose')
-require('dotenv')
 
-const config = require('../config/config')
-
-mongoose.connect('mongodb://localhost/cuatroceros')
+mongoose.connect(process.env.DB_URL)
   .then(() => {
     generateLocations()
       .then(() =>

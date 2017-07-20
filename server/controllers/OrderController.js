@@ -25,7 +25,11 @@ module.exports = {
         clientId: req.user._id,
         status: 'onqueue'
       })
-      order.save().then(e => res.redirect(`order/status/${req.user._id}`))
+      order.save().then(e => {
+      /*  fetch(`/orderCreated/enqueu/${clientId}`)
+        .then(() => {})*/
+        res.redirect(`order/status/${req.user._id}`)
+      })
     })
   },
   assignOrder: (req, res, next) => {
