@@ -22,6 +22,6 @@ function removeToTotalPrice(price) {
 function changeOrderStatus (orderId, waitressId) {
   $.ajax({
     method: 'POST',
-    url: `/order/status/${orderId}?state=assigned&id=${waitressId}`
+    url: `/order/status/notification/${orderId}?state=assigned&id=${waitressId}`
   }).then(e => console.log(e))
 }

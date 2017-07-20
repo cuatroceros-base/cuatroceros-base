@@ -1,8 +1,0 @@
-form(action='/order' method='POST')
-  ul
-    each brevage, i in brevages
-      li(id = '#{brevage.id}')
-        span #{brevage.name}
-        span #{brevage.price} €
-
-  button(type = 'submit') order

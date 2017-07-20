@@ -6,7 +6,7 @@ module.exports = {
   index: (req, res, next) => {
     Brevage.find({location: req.params.locationId}).exec()
     .then((brevages) => {
-      res.render('order/index', {brevages})
+      res.render('order/index', {brevages, user: req.user})
     })
   },
 
