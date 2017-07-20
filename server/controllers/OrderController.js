@@ -28,7 +28,7 @@ module.exports = {
         clientId: req.user._id,
         status: 'onqueue'
       })
-      order.save().then(e => res.redirect('order/proceed'))
+      order.save().then(e => res.redirect(`order/status/${req.user._id}`))
     })
   },
   assignOrder: (req, res, next) => {
@@ -36,5 +36,27 @@ module.exports = {
     .then((order) => {
       res.redirect(`/notification/statusChanged/${req.query.state}`)
     })
-  }
+  },
+  getOrderList: (req,res,next) => {
+    Order.find({clientId: req.params.clientId}).exec()
+          .then((orders) => {
+            let ordersPromises = []
+            orders.forEach((e) => {
+              ordersPromises.push(new Promise((resolve, reject) => {
+                e.populate('clientId', (err, client) => {
+                  if (err) { return err }
+                  resolve(client)
+                })
+              }))
+            })
+            Promise.all(ordersPromises).then((orders) => {
+              console.log(orders)
+              res.render('order/list', {orders, user: req.user})
+
+            })
+          })
+          .catch(err => err)
+            //console.log(orders)
+            //res.render('waitress/index', {orders})
+        }
 }
