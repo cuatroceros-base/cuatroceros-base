@@ -1,20 +1,37 @@
-function addDrink (id, price) {
-  document.getElementById(id).innerHTML = parseInt( document.getElementById(id).innerHTML) + 1
-  document.getElementById('hidden_' + id).setAttribute('value', parseInt( document.getElementById('hidden_' + id).getAttribute('value')) + 1)
-  addToTotalPrice(price)
-}
-function removeDrink (id, price) {
-  if(parseInt( document.getElementById(id).innerHTML)) {
-    document.getElementById(id).innerHTML = parseInt( document.getElementById(id).innerHTML) - 1
-    document.getElementById('hidden_' + id).setAttribute('value', parseInt( document.getElementById('hidden_' + id).getAttribute('value')) - 1)
-    removeToTotalPrice(price)
-  }
-}
+let endpoint
+let key
+let authSecret
 
-function addToTotalPrice(price) {
-  document.getElementById('total').innerHTML = (parseFloat( document.getElementById('total').innerHTML) + parseFloat(price)).toFixed(2)
-}
+navigator.serviceWorker.register('/js-static/sw.js')
+  .then(function (registration) {
+    return registration.pushManager.getSubscription()
+      .then(function (subscription) {
+        if (subscription) {
+          return subscription
+        }
 
-function removeToTotalPrice(price) {
-  document.getElementById('total').innerHTML = (parseFloat( document.getElementById('total').innerHTML) - parseFloat(price)).toFixed(2)
-}
+        return registration.pushManager.subscribe({
+          userVisibleOnly: true
+        })
+      })
+  })
+    .then(function (subscription) {
+      let rawKey = subscription.getKey ? subscription.getKey('p256dh') : ''
+      key = rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : ''
+      let rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : ''
+      authSecret = rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : ''
+
+      endpoint = subscription.endpoint
+
+      fetch('/notification/registerNofication', {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          endpoint: subscription.endpoint,
+          key: key,
+          authSecret: authSecret
+        })
+      })
+    })

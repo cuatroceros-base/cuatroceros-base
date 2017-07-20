@@ -12,8 +12,8 @@ const orderSchema = new Schema({
     type: String,
     enum: [
       'onqueue',
-      'ready',
-      'served'
+      'assigned',
+      'ready'
     ]
   }
 })

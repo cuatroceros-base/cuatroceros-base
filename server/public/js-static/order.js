@@ -18,3 +18,10 @@ function addToTotalPrice(price) {
 function removeToTotalPrice(price) {
   document.getElementById('total').innerHTML = (parseFloat( document.getElementById('total').innerHTML) - parseFloat(price)).toFixed(2)
 }
+
+function changeOrderStatus (orderId, waitressId) {
+  $.ajax({
+    method: 'POST',
+    url: `/order/status/${orderId}?state=assigned&id=${waitressId}`
+  }).then(e => console.log(e))
+}

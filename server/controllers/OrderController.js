@@ -1,6 +1,9 @@
+const SSE = require("sse-node")
+
 const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
 const {generateBrevageList, computeTotal} = require('../helpers/OrderHelper')
+
 
 module.exports = {
   index: (req, res, next) => {
@@ -26,6 +29,12 @@ module.exports = {
         status: 'onqueue'
       })
       order.save().then(e => res.redirect('order/proceed'))
+    })
+  },
+  assignOrder: (req, res, next) => {
+    Order.findOneAndUpdate({_id: req.params.orderId}, {$set: {status: req.query.state, waiterId: req.query.id}}).exec()
+    .then((order) => {
+      res.redirect(`/notification/statusChanged/${req.query.state}`)
     })
   }
 }
