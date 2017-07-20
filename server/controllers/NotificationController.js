@@ -51,6 +51,8 @@ module.exports = {
       })
   },
   orderCreated: (req, res, next) => {
+    console.log('order create')
+
     User.find({role: 'waitress'}).exec()
         .then((users) => {
           let userNotifications = users.forEach((user) => (

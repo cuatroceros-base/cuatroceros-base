@@ -1,3 +1,5 @@
+const fetch = require('node-fetch')
+
 const Brevage = require('../models/Brevage')
 const Order = require('../models/Order')
 const {generateBrevageList, computeTotal} = require('../helpers/OrderHelper')
@@ -25,10 +27,12 @@ module.exports = {
         clientId: req.user._id,
         status: 'onqueue'
       })
-      order.save().then(e => {
-      /*  fetch(`/orderCreated/enqueu/${clientId}`)
-        .then(() => {})*/
-        res.redirect(`order/status/${req.user._id}`)
+
+      order.save().then(element => {
+        fetch(`http://localhost:3000/notification/orderCreated/enqueue/${element._id}`)
+        .then(() => {
+          res.redirect(`order/status/${req.user._id}`)
+        })
       })
     })
   },
