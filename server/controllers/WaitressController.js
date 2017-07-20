@@ -2,7 +2,7 @@ const Order = require('../models/Order')
 
 module.exports = {
   order: (req, res, next) => {
-    console.log(req.user.location)
+    console.log(req.user)
     Order.find({location: req.user.location}).exec()
           .then((orders) => {
             let ordersPromises = []

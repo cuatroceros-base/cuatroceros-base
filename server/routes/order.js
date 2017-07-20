@@ -5,6 +5,8 @@ router.post('/', OrderController.generateOrder)
 
 router.get('/:locationId', OrderController.index)
 
-router.post('/status/:orderId', OrderController.assignOrder)
+router.post('/status/notification/:orderId', OrderController.assignOrder)
+
+router.get('/status/:clientId', OrderController.getOrderList)
 
 module.exports = router

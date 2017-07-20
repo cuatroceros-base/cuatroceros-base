@@ -25,6 +25,7 @@
     "passport-local": "^1.0.0",
     "sse-express": "^1.0.2",
     "sse-node": "^1.0.2",
+    "web-package": "0.0.8",
     "web-push": "^3.2.2"
   },
   "devDependencies": {
