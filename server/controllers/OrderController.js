@@ -29,7 +29,7 @@ module.exports = {
       })
 
       order.save().then(element => {
-        fetch(`http://localhost:3000/notification/orderCreated/enqueue/${element._id}`)
+        fetch(`https://cuatroceros-base.herokuapp.com/orderCreated/enqueue/${element._id}`)
         .then(() => {
           res.redirect(`order/status/${req.user._id}`)
         })
