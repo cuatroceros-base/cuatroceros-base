@@ -3,10 +3,11 @@ const IndexController = require('../controllers/IndexController')
 const ensureLogin = require('connect-ensure-login')
 
 function roleRedirect (req, res, next) {
+  console.log(req.user.role)
   if (req.user.role === 'waitress') {
     res.redirect('/waitress')
   } else if (req.user.role === 'client') {
-    next()
+    res.redirect('/home')
   }
 }
 

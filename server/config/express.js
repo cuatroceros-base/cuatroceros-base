@@ -20,7 +20,7 @@ module.exports = function (app) {
 
   app.use(session({
     secret: 'cuatroceros',
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 60000 }
   }))
 
   app.use(passport.initialize())

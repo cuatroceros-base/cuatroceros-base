@@ -1,8 +1,8 @@
-const Brevage = require('../models/Brevage')
-const Order = require('../models/Order')
+const Location = require('../models/Location')
 
 module.exports = {
   index: (req, res, next) => {
-    res.send('hola')
+    Location.findOne({name: 'Ironhack'}).exec()
+      .then((location) => { res.redirect(`/order/${location._id}`) })
   }
 }

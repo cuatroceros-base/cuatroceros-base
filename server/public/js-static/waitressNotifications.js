@@ -1,6 +1,7 @@
 let endpoint
 let key
 let authSecret
+
 navigator.serviceWorker.register('/js-static/sw.js')
   .then(function (registration) {
     return registration.pushManager.getSubscription()
@@ -22,7 +23,7 @@ navigator.serviceWorker.register('/js-static/sw.js')
 
       endpoint = subscription.endpoint
 
-      fetch('/notification/registerNofication', {
+      fetch('/notification/registerNoficationWaitress', {
         method: 'post',
         headers: {
           'Content-type': 'application/json'

@@ -35,7 +35,7 @@ module.exports = {
       res.redirect(`/notification/statusChanged/${req.query.state}/${req.params.orderId}`)
     })
   },
-  getOrderList: (req,res,next) => {
+  getOrderList: (req, res, next) => {
     Order.find({clientId: req.params.clientId}).exec()
           .then((orders) => {
             let ordersPromises = []
@@ -46,11 +46,17 @@ module.exports = {
                   resolve(client)
                 })
               }))
+              ordersPromises.push(new Promise((resolve, reject) => {
+                e.populate('brevages', (err, brevage) => {
+                  if (err) { return err }
+                  console.log(brevage)
+                  resolve(brevage)
+                })
+              }))
             })
             Promise.all(ordersPromises).then((orders) => {
               console.log(orders)
               res.render('order/list', {orders, user: req.user})
-
             })
           })
           .catch(err => err)
