@@ -1,7 +1,6 @@
 let endpoint
 let key
 let authSecret
-
 navigator.serviceWorker.register('/js-static/sw.js')
   .then(function (registration) {
     return registration.pushManager.getSubscription()

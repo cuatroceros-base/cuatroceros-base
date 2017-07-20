@@ -7,19 +7,21 @@ const notificationObject = {}
 module.exports = {
   register: (req, res, next) => {
 
+    console.log('registering')
     notificationObject.endpoint = req.body.endpoint
     notificationObject.key = req.body.key
     notificationObject.authSecret = req.body.authSecret
+    console.log(notificationObject)
+
     res.send('ok')
   },
   received: (req, res, next) => {
-
     webPush.sendNotification({
-      endpoint: req.body.endpoint,
+      endpoint: notificationObject.endpoint,
       TTL: req.body.ttl,
       keys: {
-        p256dh: req.body.key,
-        auth: req.body.authSecret
+        p256dh: notificationObject.key,
+        auth: notificationObject.authSecret
       }
     }, 'the order is being processed')
     .then(function () {
