@@ -23,7 +23,7 @@ navigator.serviceWorker.register('/js-static/sw.js')
 
       endpoint = subscription.endpoint
 
-      fetch(`/notification/registerNoficationClient/${document.querySelector('#userId').getAttribute('value')}`, {
+      fetch(`/notification/registerNotificationClient/${document.querySelector('#userId').getAttribute('value')}`, {
         method: 'post',
         headers: {
           'Content-type': 'application/json'

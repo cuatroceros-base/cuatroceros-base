@@ -21,12 +21,11 @@ module.exports = {
 
     Notification.findOne({userId: req.params.userId}).exec()
        .then(notification => {
-         if(!notification) return new Notification(newNotification).save();
-         return Notification.findByIdAndUpdate(notification._id, newNotification,{new:true}).exec();
-       })
-       .then( user => next(null, user))
+         if (!notification) return new Notification(newNotification).save()
+          return Notification.findByIdAndUpdate(notification._id, newNotification, {new:true}).exec()
+        })
+       .then( user => res.send('ok'))
        .catch(e => next(e));
-    // notification.fin().then(e => res.send('ok'))
   },
   registerWaitress: (req, res, next) => {
     notificationObject.endpoint = req.body.endpoint
