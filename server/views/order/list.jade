@@ -22,18 +22,8 @@ block content
                 i.icon-arrow-down.red
                 strong items #{order.brevages.length}
                 |  #{order.clientId.name}  #{order.clientId.lastName}
-                span(style="float:right;font-size:12px" onclick="changeOrderStatus('#{order._id}', '#{user._id}')") assign
-                span.label.label-important(style="float:right;font-size:12px") #{order.status}
               ul(style='display: none;')
-                li
-                  a.submenu(href='submenu.html')
-                    i.icon-file-alt
-                    span.hidden-tablet  Sub Menu 1
-                li
-                  a.submenu(href='submenu2.html')
-                    i.icon-file-alt
-                    span.hidden-tablet  Sub Menu 2
-                li
-                  a.submenu(href='submenu3.html')
-                    i.icon-file-alt
-                    span.hidden-tablet  Sub Menu 3
+                each brevage, i in order.brevages
+                  li(style='color: black;')
+                    i.icon-glass
+                    span.hidden-tablet #{brevage.name}

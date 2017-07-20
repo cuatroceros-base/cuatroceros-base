@@ -37,30 +37,30 @@ module.exports = {
   },
   getOrderList: (req, res, next) => {
     Order.find({clientId: req.params.clientId}).exec()
-          .then((orders) => {
-            let ordersPromises = []
-            orders.forEach((e) => {
-              ordersPromises.push(new Promise((resolve, reject) => {
-                e.populate('clientId', (err, client) => {
-                  if (err) { return err }
-                  resolve(client)
-                })
-              }))
-              ordersPromises.push(new Promise((resolve, reject) => {
-                e.populate('brevages', (err, brevage) => {
-                  if (err) { return err }
-                  console.log(brevage)
-                  resolve(brevage)
-                })
-              }))
+      .then((orders) => {
+        let ordersPromises = []
+        orders.forEach((e) => {
+          ordersPromises.push(new Promise((resolve, reject) => {
+            e.populate('clientId', (err, client) => {
+              if (err) { return err }
+              resolve(client)
             })
-            Promise.all(ordersPromises).then((orders) => {
-              console.log(orders)
-              res.render('order/list', {orders, user: req.user})
+          }))
+        })
+        Promise.all(ordersPromises).then((orders) => {
+          let propagatedOrders = orders.map((order) => new Promise((resolve, reject) => {
+            order.populate('brevages', (err, client) => {
+              if (err) { return err }
+              resolve(client)
             })
           })
-          .catch(err => err)
-            //console.log(orders)
-            //res.render('waitress/index', {orders})
-        }
+        )
+          Promise.all(propagatedOrders).then((finalOrders) => {
+            console.log(finalOrders)
+            res.render('order/list', {orders: finalOrders, user: req.user})
+          })
+        })
+      })
+      .catch(err => err)
+  }
 }
