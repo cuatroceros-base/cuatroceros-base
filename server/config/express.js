@@ -6,6 +6,7 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const config = require('./config')
+const MongoStore = require('connect-mongo')(session)
 
 module.exports = function (app) {
   mongoose.connect(config.db)
@@ -20,7 +21,8 @@ module.exports = function (app) {
 
   app.use(session({
     secret: 'cuatroceros',
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 60000 },
+    store: new MongoStore({mongooseConnection: mongoose.connection})
   }))
 
   app.use(passport.initialize())
