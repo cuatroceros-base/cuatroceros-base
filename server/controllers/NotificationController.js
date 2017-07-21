@@ -26,7 +26,7 @@ module.exports = {
         })
        .then( user => res.send('ok'))
        .catch(e => next(e));
-  }
+  },
 
   received: (req, res, next) => {
     Order.findById(req.params.orderId).exec()
