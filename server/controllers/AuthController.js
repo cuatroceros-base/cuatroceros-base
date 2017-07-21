@@ -15,8 +15,15 @@ module.exports = {
     res.render('auth/signup');
   },
   signup: (req, res, next) => {
+    const name = req.body.name;
+    const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
+    const dateOfBirth = req.body.dateOfBirth;
+    const address = req.body.address;
+    const mobileNumber = req.body.mobileNumber;
+
+console.log(req.body);
 
     if (email === "" || password === "") {
       res.render("auth/signup", {
@@ -39,8 +46,13 @@ module.exports = {
       const hashPass = bcrypt.hashSync(password, salt);
 
       const newUser = User({
+        name: name,
+        lastName: lastName,
         email: email,
         password: hashPass,
+        dateOfBirth: dateOfBirth,
+        address: address,
+        mobileNumber: mobileNumber,
         role: 'client'
       });
 
