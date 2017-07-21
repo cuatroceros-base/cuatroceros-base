@@ -21,8 +21,10 @@ module.exports = function (app) {
 
   app.use(session({
     secret: 'cuatroceros',
-    cookie: { maxAge: 60000 },
-    store: new MongoStore({mongooseConnection: mongoose.connection})
+    cookie: { maxAge: 24 * 3600 },
+    store: new MongoStore({mongooseConnection: mongoose.connection}),
+    resave: true,
+    saveUninitialized: true
   }))
 
   app.use(passport.initialize())
