@@ -66,6 +66,15 @@ function generateUsers (locationId) {
     address: 'Castellana 22',
     role: 'waitress',
     location: locationId
+  }, {
+    name: 'Papu',
+    lastName: 'papu',
+    email: 'papu@gmail.com',
+    password: bcrypt.hashSync('1234', salt),
+    dateOfBirth: '06/06/2000',
+    address: 'Castellana 22',
+    role: 'waitress',
+    location: locationId
   }]
   return new Promise((resolve, reject) => {
     let UserObj = UserData.map(p => new User(p))
@@ -84,16 +93,36 @@ function generateUsers (locationId) {
 function generateBrevages (locationId) {
   const BrevageData = [{
     name: 'Coca-cola',
-    price: '5',
-    size: 'shot',
+    price: '3',
+    size: 'regular',
     location: locationId
   }, {
     name: 'Water',
-    price: '4.55',
+    price: '2',
+    size: 'regular',
+    location: locationId
+  }, {
+    name: 'Whiskey-cola',
+    price: '7',
+    size: 'regular',
+    location: locationId
+  }, {
+    name: 'Ron-cola',
+    price: '7',
+    size: 'regular',
+    location: locationId
+  }, {
+    name: 'Tequila',
+    price: '3',
     size: 'shot',
     location: locationId
   }, {
-    name: 'Beer',
+    name: 'Vodka-limon',
+    price: '3',
+    size: 'regular',
+    location: locationId
+  }, {
+    name: 'Vodka',
     price: '3',
     size: 'shot',
     location: locationId
