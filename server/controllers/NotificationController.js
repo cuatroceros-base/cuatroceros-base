@@ -27,13 +27,6 @@ module.exports = {
        .then( user => res.send('ok'))
        .catch(e => next(e));
   },
-  registerWaitress: (req, res, next) => {
-    notificationObject.endpoint = req.body.endpoint
-    notificationObject.key = req.body.key
-    notificationObject.authSecret = req.body.authSecret
-
-    res.send('ok')
-  },
 
   received: (req, res, next) => {
     Order.findById(req.params.orderId).exec()
