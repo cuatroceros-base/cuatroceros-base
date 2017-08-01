@@ -1,4 +1,6 @@
-require('dotenv').config({path: '../.env'})
+require('dotenv').config({
+  path: '../.env'
+})
 
 const Location = require('../models/Location')
 const Brevage = require('../models/Brevage')
@@ -12,26 +14,23 @@ const salt = bcrypt.genSaltSync(bcryptSalt)
 const mongoose = require('mongoose')
 
 mongoose.connect(process.env.DB_URL)
-  .then(() => {
-    generateLocations()
-      .then(() =>
-          Location.findOne().exec()
-              .then((location) => Promise.all([
-                generateUsers(location._id),
-                generateBrevages(location._id)
-              ]))
-              .then(() => {
-                mongoose.connection.close()
-              })
-      )
-  })
+  .then(() => generateLocations())
+  .then(() => Location.findOne().exec())
+  .then((location) => Promise.all([generateUsers(location._id), generateBrevages(location._id)]))
+  .then(() => {mongoose.connection.close()})
 
-function generateLocations () {
+function generateLocations() {
   const locationData = [{
     name: 'Ironhack',
     cordinates: {
       lat: 40.392712,
       lng: -3.698235
+    }
+  }, {
+    name: 'Pacha',
+    cordinates: {
+      lat: 45.392712,
+      lng: -5.698235
     }
   }]
   return new Promise((resolve, reject) => {
@@ -39,8 +38,8 @@ function generateLocations () {
 
     let promisesLocation = locationObj.map(p =>
       p.save()
-        .then(obj => console.log(`New location created [${obj.name}] with ID:${obj._id}`))
-        .catch(err => console.log(err))
+      .then(obj => console.log(`New location created [${obj.name}] with ID:${obj._id}`))
+      .catch(err => console.log(err))
     )
     Promise.all(promisesLocation).then(() => {
       resolve()
@@ -48,7 +47,7 @@ function generateLocations () {
   })
 }
 
-function generateUsers (locationId) {
+function generateUsers(locationId) {
   const UserData = [{
     name: 'Jorge',
     lastName: 'Pedrejon',
@@ -81,8 +80,8 @@ function generateUsers (locationId) {
 
     let promisesUsers = UserObj.map(p =>
       p.save()
-        .then(obj => console.log(`New User created [${obj.name}] with ID:${obj._id}`))
-        .catch(err => console.log(err))
+      .then(obj => console.log(`New User created [${obj.name}] with ID:${obj._id}`))
+      .catch(err => console.log(err))
     )
     Promise.all(promisesUsers).then(() => {
       resolve()
@@ -90,7 +89,7 @@ function generateUsers (locationId) {
   })
 }
 
-function generateBrevages (locationId) {
+function generateBrevages(locationId) {
   const BrevageData = [{
     name: 'Coca-cola',
     price: '3',
@@ -133,8 +132,8 @@ function generateBrevages (locationId) {
 
     let promisesBrevage = brevageObj.map(p =>
       p.save()
-        .then(obj => console.log(`New brevage created [${obj.name}] with ID:${obj._id}`))
-        .catch(err => console.log(err))
+      .then(obj => console.log(`New brevage created [${obj.name}] with ID:${obj._id}`))
+      .catch(err => console.log(err))
     )
     Promise.all(promisesBrevage).then(() => {
       resolve()
